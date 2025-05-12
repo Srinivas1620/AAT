@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To Hailey's Comet</title>
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;500;700&family=Lora:wght@400;600&display=swap" rel="stylesheet">
+  <!-- Animate.css -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap'); /* Import Quicksand font */
+
+    body, html {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      font-family: 'Quicksand', sans-serif; /* Apply Quicksand font */
+      overflow-x: hidden; /* Prevent horizontal scrolling */
+      background: #000; /* Fallback color */
+      background-image: url('pic.jpg'); /* Set the image as the background */
+      background-size: cover; /* Ensure the image covers the entire screen */
+      background-position: center center; /* Center the image */
+      background-repeat: no-repeat; /* Prevent tiling */
+      background-attachment: fixed; /* Fix the background image */
+      color: #fff; /* Change text color to white for better contrast */
+    }
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+      margin: auto;
+      padding: 2rem;
+      text-align: center;
+    }
+    h1.title {
+      font-family: 'Quicksand', sans-serif; /* Apply Quicksand font */
+      font-size: 3.5rem;
+      color: #fff; /* Change heading color to white */
+      text-shadow: 0 0 20px #fff, 0 0 40px #fff; /* Neon white glow effect */
+      animation: fadeInDown 2s;
+      margin-bottom: 1.5rem;
+    }
+    .section {
+      display: none; /* Hide all sections by default */
+    }
+    .section.active {
+      display: block; /* Show only the active section */
+    }
+    button.btn-next {
+      background: #fff; /* Change button background to white */
+      color: #f00; /* Change button text to red for contrast */
+      border: none;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      font-family: 'Quicksand', sans-serif; /* Apply Quicksand font */
+      box-shadow: 0 0 20px #fff, 0 0 40px #fff; /* Neon white glow effect */
+      margin-top: 1.5rem;
+      cursor: pointer;
+      border-radius: 0.5rem;
+    }
+    button.btn-next:hover {
+      background: #f0f0f0; /* Slightly lighter white on hover */
+    }
+    .emoji-float {
+      position: absolute;
+      font-size: 3rem;
+      opacity: 0; /* Start fully transparent */
+      color: #fff; /* White color for emojis */
+      text-shadow: none; /* No glow effect */
+      animation: float 8s linear infinite;
+    }
+    @keyframes float {
+      0% {
+        transform: translateY(0); /* Start at the bottom */
+        opacity: 0; /* Fully transparent */
+      }
+      10% {
+        opacity: 1; /* Fade in */
+      }
+      100% {
+        transform: translateY(-120vh); /* Move above the viewport */
+        opacity: 0; /* Fade out */
+      }
+    }
+    .dialogue-box {
+      background: rgba(0, 0, 0, 0.8); /* Dark black background for better contrast */
+      padding: 2rem;
+      border: 2px solid #fff; /* Neon white border */
+      border-radius: 1rem;
+      box-shadow: 0 0 20px #fff, 0 0 40px #fff; /* Neon white glow effect */
+      display: inline-block;
+      margin-top: 1rem;
+      color: #fff; /* Change text color to white */
+      font-family: 'Quicksand', sans-serif; /* Apply Quicksand font */
+    }
+    video {
+      width: 100%;
+      max-width: 100%;
+      border: 2px solid #f00; /* Neon red border */
+      border-radius: 0.5rem;
+      margin: auto;
+      display: block;
+    }
+    .essay-text {
+      font-family: 'Quicksand', sans-serif; /* Apply Quicksand font */
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: #fff; /* Change text color to white */
+      background: rgba(0, 0, 0, 0.8); /* Dark black background for better contrast */
+      padding: 2rem;
+      border: 1px solid #fff; /* Neon white border */
+      border-radius: 0.5rem;
+      box-shadow: 0 0 10px #fff, 0 0 20px #fff; /* Neon white glow effect */
+      text-align: left;
+      display: inline-block;
+      max-width: 100%;
+      margin: auto;
+    }
+    @media (max-width: 768px) {
+      h1.title {
+        font-size: 2.5rem; /* Adjust title size for smaller screens */
+      }
+      .container {
+        padding: 1rem; /* Reduce padding for smaller screens */
+      }
+      .essay-text {
+        font-size: 1rem; /* Adjust essay text size */
+        padding: 1rem; /* Reduce padding */
+      }
+      button.btn-next {
+        font-size: 0.9rem; /* Adjust button size */
+        padding: 0.5rem 1rem;
+      }
+    }
+    #section1 {
+      display: flex;
+      flex-direction: column;
+      justify-content: center; /* Center vertically */
+      align-items: center; /* Center horizontally */
+      height: 100vh; /* Full viewport height */
+      text-align: center; /* Center text alignment */
+      margin: 0; /* Remove any default margin */
+      padding: 0; /* Remove any default padding */
+    }
+
+    #section1 p {
+      margin: 0; /* Remove any margin from the paragraph */
+    }
+  </style>
+  <script src="https://www.youtube.com/iframe_api"></script>
+</head>
+<body>
+
+  <!-- Floating Emojis -->
+  <script>
+    const emojis = ['🌙', '💛', '🐶', '🍫', '✨'];
+    for (let i = 0; i < 30; i++) {
+      const span = document.createElement('span');
+      span.className = 'emoji-float';
+      span.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+      span.style.left = Math.random() * 100 + '%'; // Random horizontal position
+      span.style.bottom = '-10vh'; // Start below the viewport
+      span.style.animationDelay = Math.random() * 5 + 's'; // Random delay
+      document.body.appendChild(span);
+    }
+  </script>
+
+  <div class="container">
+    <h1 class="title animate__animated animate__fadeInDown">WHY THE HELL ARE WE LIKE THIS???</h1>
+
+    <!-- Section 1: Note -->
+    <div id="section1" class="section active animate__animated animate__fadeInUp">
+      <p>Srinivasss inthaaaaaaa overrrr chesiii mariiii chesthunnaduuuu anteeee obviouslyyyy it hasss to starttt with a movieeeee referenceeee kadhaaaa!!!!!!!!!</p>
+      <p>Sooooo click next, scroll down and watch this videooo!!</p>
+      <p>Justtt watch the first 2 mins, exactly 2:00 daggara next nokkey malli!!</p>
+      <button class="btn-next" onclick="showSection(2)">Watch Video</button>
+    </div>
+
+    <!-- Section 2: Video -->
+    <div id="section2" class="section animate__animated animate__fadeInUp">
+      <iframe 
+        id="youtube-video" 
+        width="100%" 
+        height="315" 
+        src="https://www.youtube.com/embed/yYLPp-LogmM?enablejsapi=1&rel=0" 
+        title="YouTube video player" 
+        frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+        allowfullscreen>
+      </iframe>
+      <button class="btn-next" onclick="showSection(3)">Next</button>
+    </div>
+
+    <!-- Section 3: Essay as Paragraph -->
+    <div id="section3" class="section animate__animated animate__fadeInUp">
+      <div class="essay-text">
+        <p>Sooo let thee cringeee cheeeezinessssss begin igg!!
+Alsoooo Im doing all this in laptop anmata, Sooo cant use emojisss!!
+</p>
+<p>
+Aaaa dialougeee vinnnaaavaaaaaaa!! Ammayiluuu padeyadammmm andhammmm, mem padipodaaammm aanavaayithiiii!!!
+It Mightttt Soundddd very Misooogynisticcc but its nott!!
+Sooo what im trying to sayyy isss, whyyy shoulddd a girlll say all thiss when a guy is alreadyyy present right there!!
+</p>
+<p>
+I never ever thought ill say all these things to a woman!!
+I mean for god's sake!! I had the next 30-40 years planned kiii What would i do being single and all, I was sooo determined and confident kiii i would lead such a great single life kiii I would regret nothing at all, I had no second thoughts about that!!
+Maybe all this, its tooo soon, idk, But if i dont say this now, then i dont know when i will!
+</p>
+<p>
+Do you know what i feel?? 
+I read a posttt kiiii I fell for her soul and mind before i even know how the touch of her finger might feel like!
+There might a million problems and stressful things in my head, but just talking to you about random stuff kinda gives me the courage/ hope kii i can face them in a much moreee confident way!!
+Do you know why You? and not deekshitha or some other random person on the planet??
+You see, Qualities chuskodam, compatibility chuskodam, idantha okay, fine eyy, but the thing issss!!! likeeeeee i can sayyy to u the mosttt complex thinggg in the world, and ull get it!! i can say u how i feel in the most absurd way possible and still u get it! At this pointttt i really dont think ki its about the qualities and features anymore, its really just about how well we connect and understand each other maybe. And idk about you but, i feel ki, its very very very rare kiii two people connect like thattt!! 
+Talking about the past and all, I already told you kadhaaaaa, an year ago and all, i just thought we might be compatible emo, but thats just seeing things on the surfaceee!! But the last couple of weeks, when i started digging that surface, i realized so many things! likeee it wasn't justtt compatibility! the constant forgiveness we both had, the constant patience and adjustments!! and the goddamnnnn connect we both had!! Its not at all common man!!
+I never everrr takes risks at all, Likeeee nenuuu naa eyes thoo i saw a million guys, saying kiii areyyy my woman is different ra blah blah blah, lasttt kiii paaapam aneee stage lokiii velthadu vaadu. I was always in that mindset only, but right now, idkkkk..........I trust you sooo fucking much, I trust all this soooo fucking much, Evenn theee coincidences and all!! Theyyyy Donttt justtt happen likeee thattt to anyoneee!!
+There areee likeee million songs that i can say, where the lyrics say kii ""**THIS**"", andharikiii dorkadhuuuu, Vethikeeee vaaluuuu vethukuthunee untaru and  dorkina vaalakii emooo vaaalu entha lucky ooooo realize avvaru and all.
+</p>
+
+<p>
+THIS IS NOT NORMAL!
+</p>
+<p>
+I REALLY DONT FEEL LIKE THIS IS JUST ANY OTHER RELATIONSHIP, I FEEL KIII THIS IS MUCH MOREEE PURE THAN SUCH CASUAL WALA THING. I SAW COUPLES WHO HAVE BEEN COUPLES SINCE LIKE 3-4 YEARS AND ALWAYS MISUNDERSTAND EACH OTHER EVERY 2-3 DAYS.
+</p>
+<p>
+What im trying to tell you is, idk how u see it, but for me, THIS isnt JUST a relationship or something else, It just feels too fucking pure to be that silly bf gf wala thing, I really feel kii this can go beyond that with time, patience and efforts.
+</p><p>
+Inthaaa intense and wildd thoughts i never say it to anyone, because maybe its just me who sees things that wayy!! But idhiii ippudu neeku cheppaka potheyy idkkkk where this will go and all!!</p>
+      </div>
+      <button class="btn-next" onclick="showSection(4)">Next</button>
+    </div>
+
+    <!-- Section 4: Dialogue Box -->
+    <div id="section4" class="section animate__animated animate__fadeInUp">
+      <div class="dialogue-box">
+        <p>But againnnnn,</p>
+        <p>I Dont wanna pressurize you and all, You can have your space, Afterrr reading all this na, Please just feel free to just take ur time, u dont need to even text me, Please think about things!! Likeeeee Dude seriously!! You dont need to settle for something soo intense and pressurizing!</p>
+        <p>Take ur own sweet time, think about things, You still have ur freedom to do things your way, If u want, You can end things right here, I wouldn't question you and torture kiii last few weeks what is all that, I understand kii sometimes mistake hoo jaatha heinn!!! You dont need to settle for this just because it happened!</p>
+        <p>I dont like casual things at all, the 6months 1 year wala flings, but if u think kiii ur more inclined towards something like that over this, Please think again!!!</p>
+        <p>I am likeeee the mosttt average normal guy you can find anywhere, Likeeeee the things i do, the hobbies, the looks, the flirting and rizz kind of things, everything is likeee you can find in any other guy out there, You can have someone who is extra ordinary, I really still dont know what you saw in me and all but, Im telling you, You can do way wayyy better than me, You still have the freedom, THINK AGAIN!!</p>
+        <p>And still after thinking all that, if u still dont wanna change the decision, Things like these require alot of effort, understanding, time and patience.</p>
+        <p>Ik that right now we are feeling things that are new to us, and TRUST ME, this is literally the tip of the iceberg!!! There will be much moree intense things to experienceee. But..........There will also be times where all this feels like very pointless and boring and dull.....THINK AGAIN!!</p>
+        <p>I KNOW ABOUT ALL THIS, AND I AGREE WITH ALL THIS, AND I AM WILLING TO DO ALL THIS!!</p>
+        <p>At any point of reading this, if u feel ki, this isn't for me, PLEASE JUST DO WHAT YOU LIKE!! ITS YOUR LIFE FOR GODS SAKE!!</p>
+        <p>im saying all this while laughing, no emojis sooo i cant express it ig!!</p>
+        <p>anthaaaaaa message raasavvvvv, anniii thingsss cheppav!! kaniii lastttt kiii when the timeee comessssss aa 3 words cheppadanikiii dhairyamm saripoledhaaa? or elseee asal anpichaledhaaaa!!</p>
+        <p>I knowww kiii we are just getting started, I know kiiiii this isn't fully developed into the L thing yet, But iggg this is necessaryyyy!</p>
+        <p>Sooooo here it goesss.........</p>
+        <p>AASHRITHA, THAT MESSAGE WAS AMAZING!! THAT MESSAGE WAS EVERYTHING!!!!!!!!!!!!!!!!</p>
+        <p>BUTTTTTT AGAINNN YOU WERE INDIRECTTTT!! NOT IN JUST ONE THINGGGGG! BUT KIII YOU EXPLAINED KIII WHAT HAPPENED IN THE PAST, WHAT LED TO THIS, BUT U DIDNT STILL EXAPLAIN ME HOW ARE U FEELING RIGHT NOW! YOU SAID IT, BUT IN AN INDIRECT WAYYY</p>
+        <p>ANDDDD THATS OKAYYYY, TAKE YOUR OWN TIME, WE WILL GET THERE ONE DAY MAYBEEE!!!</p>
+        <p>I AM AN INTROVERT, AND I NEVER THOUGHT I WILL SAY THIS TO ANYONE, AND YOU HAVE NO IDEAAA HOW HARD IT IS FOR ME TO SAY THIS BUTTTT!!!!</p>
+        <p>AAAASRITHAAAAAAAAAAAAA</p>
+        <p>THE GODDDAMNNNN HUGEEEEE HAILEYSSSS COMETTTTT</p>
+        <p>I LOVE YOU!</p>
+        <p>AND NO, I AM NOT ASKING FOR YOUR ANSWER, I AM TELLING YOU WHAT I FEEL!!</p>
+        <p>SO YEAHHH.................</p>
+        <p>I AM NOT HOPING KIII YOU AGREE AND SAY YES AND BLAH BLAH BLAH!!!</p>
+        <p>BUTTT I SERIOUSLY HOPE KII!! YOU GET CLARITY ON WHAT YOU REALLY WANT, TAKE YOUR TIME AND THINK ABOUT IT! I WANT WHATS BEST FOR YOU! NOT WHATS BEST FOR ME!!</p>
+        <p>SO EVEN IF YOU ARE NOT ALIGNED WITH ALL THIS.....THATS COMPLETELY OKAYY!! TELL ME ABOUT ALL THIS, AND LETS STOP IT HERE! NO QUESTIONS ASKED!!</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let player;
+
+    // Initialize the YouTube Player
+    function onYouTubeIframeAPIReady() {
+      player = new YT.Player('youtube-video', {
+        events: {
+          'onReady': onPlayerReady
+        }
+      });
+    }
+
+    function onPlayerReady(event) {
+      // Player is ready
+    }
+
+    function showSection(num) {
+      // Stop the video if the player exists and the current section is Section 2
+      if (player && num !== 2) {
+        player.stopVideo();
+      }
+
+      // Hide all sections
+      const sections = document.querySelectorAll('.section');
+      sections.forEach(section => {
+        section.classList.remove('active'); // Remove the active class
+      });
+
+      // Show the selected section
+      const targetSection = document.getElementById('section' + num);
+      if (targetSection) {
+        targetSection.classList.add('active'); // Add the active class to the target section
+      }
+    }
+  </script>
+</body>
+</html>
